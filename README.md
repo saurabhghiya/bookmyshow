@@ -1,2 +1,6 @@
 # bookmyshow-webapp
-BookMyShow clone web app made with MERN stack
+BookMyShow like web app made as a personal project (MERN)
+Frontend in React
+Backend in Express, Node
+DB in MongoDB
+
