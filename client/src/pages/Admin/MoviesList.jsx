@@ -5,7 +5,7 @@ import moment from "moment";
 import { message, Table } from "antd";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
-//  import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
+import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
 
 function MoviesList() {
   const [movies, setMovies] = React.useState([]);
@@ -13,40 +13,40 @@ function MoviesList() {
   const [selectedMovie, setSelectedMovie] = React.useState(null);
   const [formType, setFormType] = React.useState("add");
   const dispatch = useDispatch();
-//   const getData = async () => {
-//     try {
-//       dispatch(ShowLoading());
-//       const response = await GetAllMovies();
-//       if (response.success) {
-//         setMovies(response.data);
-//       } else {
-//         message.error(response.message);
-//       }
-//       dispatch(HideLoading());
-//     } catch (error) {
-//       dispatch(HideLoading());
-//       message.error(error.message);
-//     }
-//   };
+  
+  const getData = async () => {
+    try {
+      dispatch(ShowLoading());
+      const response = await GetAllMovies();
+      if (response.success) {
+        setMovies(response.data);
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
 
-  // const handleDelete = async (movieId) => {
-  //   try {
-  //     dispatch(ShowLoading());
-  //     const response = await DeleteMovie({
-  //       movieId,
-  //     });
-  //     if (response.success) {
-  //       message.success(response.message);
-  //       getData();
-  //     } else {
-  //       message.error(response.message);
-  //     }
-  //     dispatch(HideLoading());
-  //   } catch (error) {
-  //     dispatch(HideLoading());
-  //     message.error(error.message);
-  //   }
-  // };
+  const handleDelete = async (movieId) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await DeleteMovie({ movieId });
+      if (response.success) {
+        message.success(response.message);
+        getData();
+        console.log('delete',movieId);
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
 
   const columns = [
     {
@@ -57,8 +57,7 @@ function MoviesList() {
           <img
             src={record.poster}
             alt="poster"
-            height="60"
-            width="80"
+            width = "120px"
             className="br-1"
           />
         );
@@ -67,11 +66,13 @@ function MoviesList() {
     {
       title: "Name",
       dataIndex: "title",
+      width: "30ch"
     },
 
     {
       title: "Description",
       dataIndex: "description",
+      width: "120ch",
     },
     {
       title: "Duration",
@@ -91,6 +92,7 @@ function MoviesList() {
       render: (text, record) => {
         return moment(record.releaseDate).format("DD-MM-YYYY");
       },
+      width: "15ch"
     },
     {
       title: "Action",
@@ -100,17 +102,17 @@ function MoviesList() {
           <div className="flex gap-1">
             <i
               className="ri-delete-bin-line"
-              // onClick={() => {
-              //   handleDelete(record._id);
-              // }}
+              onClick={() => {
+                handleDelete(record._id);
+              }}
             ></i>
             <i
               className="ri-pencil-line"
-              // onClick={() => {
-              //   setSelectedMovie(record);
-              //   setFormType("edit");
-              //   setShowMovieFormModal(true);
-              // }}
+              onClick={() => {
+                setSelectedMovie(record);
+                setFormType("edit");
+                setShowMovieFormModal(true);
+              }}
             ></i>
           </div>
         );
@@ -118,9 +120,9 @@ function MoviesList() {
     },
   ];
 
-//   useEffect(() => {
-//     getData();
-//   }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div>
@@ -135,7 +137,7 @@ function MoviesList() {
         />
       </div>
 
-      <Table columns={columns} dataSource={movies} />
+      <Table columns={columns} dataSource={movies}/>
 
       {showMovieFormModal && (
         <MovieForm
@@ -144,7 +146,7 @@ function MoviesList() {
           selectedMovie={selectedMovie}
           setSelectedMovie={setSelectedMovie}
           formType={formType}
-          // getData={getData}
+          getData={getData}
         />
       )}
     </div>

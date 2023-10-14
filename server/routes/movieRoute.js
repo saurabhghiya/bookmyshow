@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const Movie = require('../models/movieModels');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 //add a movie
-router.post('/add-movie', async(req,res)=>{
+router.post('/add-movie', authMiddleware, async(req,res)=>{
     try {
         const newMovie = await Movie(req.body);
         await newMovie.save();
@@ -20,7 +21,7 @@ router.post('/add-movie', async(req,res)=>{
 })
 
 //get all movies
-router.get('/get-all-movies', async(req,res)=>{
+router.get('/get-all-movies', authMiddleware, async(req,res)=>{
     try {
         const movies = await Movie.find();
         res.send({
@@ -37,7 +38,7 @@ router.get('/get-all-movies', async(req,res)=>{
 })
 
 //update movies
-router.put('/update-movie', async(req,res)=>{
+router.put('/update-movie', authMiddleware, async(req,res)=>{
     try {
         await Movie.findByIdAndUpdate(req.body.movieId,req.body);
         res.send({
@@ -53,9 +54,9 @@ router.put('/update-movie', async(req,res)=>{
 })
 
 //delete movie
-router.delete('/delete-movie', async(req,res)=>{
+router.delete('/delete-movie', authMiddleware, async(req,res)=>{
     try {
-        await Movie.findByIdAndDelete(req.body.movieId);
+        await Movie.deleteOne(req.body.movieId);
         res.send({
             success:true,
             message:"Movie Deleted"
