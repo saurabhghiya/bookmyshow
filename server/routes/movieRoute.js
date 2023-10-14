@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const Movie = require('../models/movieModels');
 const authMiddleware = require('../middlewares/authMiddleware');
+const Movie = require('../models/movieModels');
 
 //add a movie
 router.post('/add-movie', authMiddleware, async(req,res)=>{
     try {
-        const newMovie = await Movie(req.body);
+        const newMovie = new Movie(req.body);
         await newMovie.save();
         // console.log(newMovie);
         res.send({
