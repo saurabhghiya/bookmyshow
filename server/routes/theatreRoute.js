@@ -22,10 +22,11 @@ router.post('/add-theatre', authMiddleware, async(req,res)=>{
 //get theatre by owner
 router.get('/get-all-theatres-by-owner', authMiddleware, async(req,res)=>{
     try {
-        const theatres = await Theatre.find({owner:req.body.owner});
+        const theatres = await Theatre.find({owner:req.body.userId});
+        
         res.send({
             success:true,
-            message:"All theatres fetched",
+            message:"All theatres by owners fetched",
             data: theatres,
         })
     } catch (err) {
@@ -56,7 +57,7 @@ router.get('/get-all-theatres', authMiddleware, async(req,res)=>{
 //update theatre
 router.put('/update-theatre', authMiddleware, async(req,res)=>{
     try {
-        await Movie.findByIdAndUpdate(req.body.theatreId,req.body);
+        await Theatre.findByIdAndUpdate(req.body.theatreId,req.body);
         res.send({
             success:true,
             message:"Theatre Updated"

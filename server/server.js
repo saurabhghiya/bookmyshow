@@ -18,7 +18,6 @@ app.use('/api/movies', movieRoute);
 app.use('/api/theatres', theatreRoute);
 
 
-
 app.listen(PORT, ()=>{
     console.log(`Server is running at port ${PORT}`);
 })

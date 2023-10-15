@@ -1,6 +1,7 @@
 import { Tabs } from 'antd';
 import PageTitle from '../../components/PageTitle';
 import MoviesList from './MoviesList';
+import TheatreTable from './TheatresTable';
 
 export default function Admin(){
     
@@ -11,8 +12,9 @@ export default function Admin(){
             <Tabs.TabPane tab="Movies" key="1">
                 <MoviesList/>
             </Tabs.TabPane>
+            
             <Tabs.TabPane tab="Theatres" key="2">
-                <h1>Theatre table</h1>
+                <TheatreTable />
             </Tabs.TabPane>
         </Tabs>
     </>

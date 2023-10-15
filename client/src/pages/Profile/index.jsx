@@ -1,10 +1,21 @@
+import { Tabs } from 'antd';
+import PageTitle from '../../components/PageTitle';
+import TheatresList from './TheatresList';
 
 
 export default function Profile(){
+    
+    return (<>
+        <PageTitle title="Profile" />
 
-    return (
-        <div>
-            I am Profile
-        </div>
+        <Tabs type="card" defaultActiveKey='1'>
+            <Tabs.TabPane tab="Bookings" key="1">
+                Bookings
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Apply for Theatre" key="2">
+                <TheatresList />
+            </Tabs.TabPane>
+        </Tabs>
+    </>
     )
 }
