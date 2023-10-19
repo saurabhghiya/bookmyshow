@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { message, Table } from "antd";
-// import Shows from "./Shows";
+import Shows from "./Shows.jsx";
 
 function TheatresList() {
   const { user } = useSelector((state) => state.users);
@@ -28,7 +28,7 @@ function TheatresList() {
   const getData = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await GetAllTheatresByOwner({ owner: `ObjectId('${user._id}')` });
+      const response = await GetAllTheatresByOwner({ ownerId: user._id});
       if (response.success) {
         setTheatres(response.data);
       } else {
@@ -156,13 +156,13 @@ function TheatresList() {
         />
       )}
 
-      {/* {openShowsModal && (
+      {openShowsModal && (
         <Shows
           openShowsModal={openShowsModal}
           setOpenShowsModal={setOpenShowsModal}
           theatre={selectedTheatre}
         />
-      )} */}
+      )}
     </div>
   );
 }

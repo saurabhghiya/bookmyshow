@@ -12,6 +12,10 @@
     width: 80%;
 }
 
+.h-full{
+    height: 100%;
+}
+
 
 .text-sm {
     font-size: 14px;
