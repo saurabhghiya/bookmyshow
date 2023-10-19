@@ -7,16 +7,16 @@ export const GetAllTheatres = async() => {
         const response = await axiosInstance.get('/api/theatres/get-all-theatres');
         return response.data;
     } catch (error) {
-        return error.response;
+        return error.message;
     }
 }
 
-export const GetAllTheatresByOwner = async(payload) => {
+export const GetAllTheatresByOwner = async (payload) => {
     try {
-        const response = await axiosInstance.get('/api/theatres/get-all-theatres-by-owner', payload);
+        const response = await axiosInstance.post('/api/theatres/get-all-theatres-by-owner', payload);
         return response.data;
     } catch (error) {
-        return error.response;
+        return error.message;
     }
 }
 

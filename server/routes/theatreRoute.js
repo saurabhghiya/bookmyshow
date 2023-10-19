@@ -20,9 +20,9 @@ router.post('/add-theatre', authMiddleware, async(req,res)=>{
 })
 
 //get theatre by owner
-router.get('/get-all-theatres-by-owner', authMiddleware, async(req,res)=>{
+router.post('/get-all-theatres-by-owner', authMiddleware, async(req,res)=>{
     try {
-        const theatres = await Theatre.find({owner:req.body.userId});
+        const theatres = await Theatre.find({owner:req.body.ownerId});
         
         res.send({
             success:true,
@@ -85,6 +85,7 @@ router.delete('/delete-theatre', authMiddleware, async(req,res)=>{
         })
     }
 })
+
 
 
 module.exports = router;

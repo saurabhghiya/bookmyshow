@@ -69,18 +69,22 @@ router.delete('/delete-movie', authMiddleware, async(req,res)=>{
     }
 })
 
+//get a movie by id
+router.get('/get-movie-by-id/:id', async(req,res) => {
+    try {
+        const movie = await Movie.findById(req.params.id);
+        res.send({
+            success: true,
+            message: 'Movie Fetched',
+            data: movie
+        })
+    } catch (err) {
+        res.send({
+            success: false,
+            message: err.message
+        })
+    }
+})
+
 
 module.exports = router;
-
-
-/* 
-
-"title": "Jawan",
-"description": "A high-octane action thriller that outlines the emotional journey of a man who is set to rectify the wrongs in society.",
-"duration": "170",
-"genre": "Action",
-"language": "Hindi",
-"releaseDate": "2023",
-"poster": "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/jawan-et00330424-1693892482.jpg",
-
-*/
