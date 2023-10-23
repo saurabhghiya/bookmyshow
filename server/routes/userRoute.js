@@ -21,7 +21,6 @@ router.post('/register',async(req,res)=>{
         req.body.password = hashedPassword;
 
         const newUser = await User(req.body);
-        console.log(newUser);
         await newUser.save();
         res.send({
             success:true,
@@ -55,7 +54,6 @@ router.post('/login', async (req,res)=>{
     }
     // token created using jsonwebtoken
     const token =  jwt.sign({userId:user._id},process.env.secret_key_jwt,{expiresIn:'1d'});
-    // console.log(token);
     res.send({
         success:true,
         message:"User Logged In",

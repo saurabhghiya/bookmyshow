@@ -11,10 +11,12 @@ export default function TheatreForMovie(){
     let [movie,setMovie] = useState()
     let [theatres,setTheatres] = useState();
     let [date,setDate] = useState(moment().format("YYYY-MM-DD"));
-    const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, setIsHovering] = useState('');
+
     const params = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const getData = async()=>{
         try{
             dispatch(ShowLoading());
@@ -36,7 +38,6 @@ export default function TheatreForMovie(){
         try{
             dispatch(ShowLoading());
             const response = await GetTheatresByMovie({date,movie:params.id})
-            console.log(response.data);
             if(response.success){
                 setTheatres(response.data);
                 message.success(response.message)
@@ -52,12 +53,12 @@ export default function TheatreForMovie(){
     }
 
     const handleMouseEnter = (id) => {
-        setIsHovering(true);
-      };
-    
-      const handleMouseLeave = (id) => {
-        setIsHovering(false);
-      };
+      setIsHovering(id);
+    };
+  
+    const handleMouseLeave = () => {
+      setIsHovering('');
+    };
 
     useEffect(()=>{
         getData();
@@ -103,7 +104,7 @@ export default function TheatreForMovie(){
               <h1 className="text-xl uppercase">Theatres</h1>
             </div>
             <div className="mt-1 flex flex-col gap-1">
-              {theatres.map((theatre) => (
+              {theatres && theatres.map((theatre) => (
                 <div className="card p-2">
                   <h1 className="text-md uppercase">{theatre.name}</h1>
                   <h1 className="text-sm">Address : {theatre.address}</h1>
@@ -115,10 +116,10 @@ export default function TheatreForMovie(){
                       )
                       .map((show) => (
                         <div key={show._id} style={{
-                          backgroundColor: isHovering ? '#DF1827' : 'white',
-                          color: isHovering ? 'white' : '#DF1827',
+                          backgroundColor: isHovering == show._id ? '#DF1827' : 'white',
+                          color: isHovering == show._id ? 'white' : '#DF1827',
                         }}
-                        onMouseEnter={handleMouseEnter}
+                        onMouseEnter={() => {handleMouseEnter(show._id)}}
                         onMouseLeave={handleMouseLeave}
                           className="card p-1 cursor-pointer border-primary"
                           onClick={() => {

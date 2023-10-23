@@ -46,3 +46,12 @@ export const GetTheatresByMovie = async(payload)=>{
         return err.response
     }
 }
+
+export const GetShowById = async(payload)=>{
+    try{
+        const response = await axiosInstance.post('/api/shows/get-show-by-id',payload);
+        return response.data;
+    }catch(err){
+        return err.response
+    }
+}

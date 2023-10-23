@@ -32,7 +32,7 @@ const showSchema = new mongoose.Schema({
     },
     theatre:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'threatres',
+        ref: 'theatres',
         required: true
     }
 

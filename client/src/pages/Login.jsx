@@ -10,7 +10,6 @@ const Login = () => {
   const onFinish = async (value) => {
     try {
       const res = await LoginUser(value);
-      // console.log(res);
       if (res.success) {
         // message.success(res.message);
         message.success(res.greet);

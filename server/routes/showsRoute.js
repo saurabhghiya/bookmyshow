@@ -23,7 +23,6 @@ router.post('/add-show', authMiddleware, async(req,res)=>{
 router.post('/get-all-shows-by-theatre',authMiddleware, async(req,res)=>{
     try{
         const shows = await Shows.find({theatre:req.body.theatreId}).populate('movie');
-        // console.log(res);
         res.send({
             success:true,
             message:"Shows Fetched",
@@ -78,16 +77,16 @@ router.post('/get-all-theatres-by-movie',authMiddleware,async(req,res)=>{
         //get all unique theatres
         let uniqueTheatre = [];
         shows.forEach((show)=>{
-            const theatre = uniqueTheatre.find(
+            const isTheatre = uniqueTheatre.find(
                 (theatre)=> theatre._id == show.theatre._id
             )
-            // console.log(theatre);
-            if(!theatre){
+            //Array.find returns true/false value
+            if(!isTheatre){
                 const showsForThisTheatre = shows.filter(
                     (showObj)=>showObj.theatre._id == show.theatre._id
                 )
                 uniqueTheatre.push({
-                    ...show.theatre._doc,
+                    ...show.theatre._doc, //._doc gives all key-val pairs of the document referred to
                     shows:showsForThisTheatre
                 });
             }
@@ -98,6 +97,23 @@ router.post('/get-all-theatres-by-movie',authMiddleware,async(req,res)=>{
             data:uniqueTheatre
         })
     }catch(err){
+        res.send({
+            success:false,
+            message:err.message
+        })
+    }
+})
+
+
+router.post('/get-show-by-id', authMiddleware, async (req,res) => {
+    try {
+        const show = await Shows.findById(req.body.showId).populate('movie').populate('theatre');
+        res.send({
+            success:true,
+            message:"Show Fetched",
+            data:show
+        })
+    } catch (error) {
         res.send({
             success:false,
             message:err.message

@@ -37,7 +37,6 @@ function MoviesList() {
       if (response.success) {
         message.success(response.message);
         getData();
-        console.log('delete',movieId);
       } else {
         message.error(response.message);
       }

@@ -17,7 +17,6 @@ export default function Home(){
         try {
             dispatch(ShowLoading());
             const response = await GetAllMovies();
-            console.log(response)
             if (response.success) {
                 setMovies(response.data)
             } else {

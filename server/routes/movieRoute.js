@@ -7,7 +7,6 @@ router.post('/add-movie', authMiddleware, async(req,res)=>{
     try {
         const newMovie = new Movie(req.body);
         await newMovie.save();
-        // console.log(newMovie);
         res.send({
             success:true,
             message:"Movie Added"

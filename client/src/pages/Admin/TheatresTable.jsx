@@ -12,7 +12,6 @@ function TheatreTable() {
     try {
       dispatch(ShowLoading());
       const response = await GetAllTheatres();
-      console.log(response.data);
       if (response.success) {
         setTheatres(response.data);
       } else {
