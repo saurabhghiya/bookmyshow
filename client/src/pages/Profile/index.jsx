@@ -1,6 +1,7 @@
 import { Tabs } from 'antd';
 import PageTitle from '../../components/PageTitle';
 import TheatresList from './TheatresList';
+import Bookings from './Bookings';
 
 
 export default function Profile(){
@@ -10,7 +11,7 @@ export default function Profile(){
 
         <Tabs type="card" defaultActiveKey='1'>
             <Tabs.TabPane tab="Bookings" key="1">
-                Bookings
+                <Bookings />
             </Tabs.TabPane>
             <Tabs.TabPane tab="Apply for Theatre" key="2">
                 <TheatresList />

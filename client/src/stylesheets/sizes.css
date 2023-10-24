@@ -48,3 +48,7 @@
 .br-1 {
     border-radius: 4px;
 }
+
+p{
+    line-height: 0.5ch;
+}

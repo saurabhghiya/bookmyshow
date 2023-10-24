@@ -75,13 +75,14 @@ export default function TheatreForMovie(){
             <div className="flex justify-between items-center mb-2">
               <div>
                 <h1 className="text-2xl uppercase">
-                  {movie.title} ({movie.language})
+                  {movie.title}
                 </h1>
-                <h1 className="text-md">Duration : {movie.duration} mins</h1>
-                <h1 className="text-md">
+                <p className="text-sm">Duration : {movie.duration} mins</p>
+                <p className="text-sm">
                   Release Date : {moment(movie.releaseDate).format("MMM Do yyyy")}
-                </h1>
-                <h1 className="text-md">Genre : {movie.genre}</h1>
+                </p>
+                <p className="text-sm">Genre : {movie.genre}</p>
+                <p className="text-sm">Language : {movie.language}</p>
               </div>
     
               <div className="mr-3">
