@@ -44,7 +44,7 @@ function ProtectedRoute({ children }) {
     user && 
     (
       <div className="layout p-1">
-        <div className="header bg-primary flex justify-between p-2">
+        <div className="header bg-primary flex justify-between p-1">
           <div>
             <h1 className="text-2xl text-white cursor-pointer"
               onClick={() => navigate("/")}
@@ -75,7 +75,8 @@ function ProtectedRoute({ children }) {
             ></i>
           </div>
         </div>
-        <div className="content mt-1 p-1">{children}</div>
+        {children}
+        
       </div>
     )
   );

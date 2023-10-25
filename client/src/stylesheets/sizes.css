@@ -49,6 +49,10 @@
     border-radius: 4px;
 }
 
+.br-10 {
+    border-radius: 10px;
+}
+
 p{
     line-height: 0.5ch;
 }
