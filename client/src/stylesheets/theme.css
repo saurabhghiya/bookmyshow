@@ -1,5 +1,5 @@
 :root {
-    --colour-primary: #3ba7a7;
+    --colour-primary: #df1827;
     --colour-secondary: #e6b412;
 }
 
@@ -9,6 +9,10 @@
 
 .bg-secondary {
     background-color: var(--colour-secondary);
+}
+
+.bg-lightgrey {
+    background-color: #ececec;
 }
 
 .bg-error{

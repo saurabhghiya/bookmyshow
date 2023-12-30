@@ -37,6 +37,11 @@
   
   /* Margins */
   
+  .m-auto{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .m-1 {
     margin: 10px;
   }
@@ -153,4 +158,10 @@
   
   .gap-3 {
     gap: 30px;
+  }
+
+  /* text */
+
+  .text-center{
+    text-align: center;
   }

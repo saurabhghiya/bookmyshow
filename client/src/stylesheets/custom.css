@@ -17,6 +17,10 @@
   cursor: pointer;
 }
 
+.bold{
+  font-weight: bold;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -46,15 +50,12 @@ thead th {
   margin: 10px 0;
 }
 
-.movies-container {
-
-}
 
 /* seats */
 
 .seat {
-  height: 30px;
-  width: 50px;
+  height: 40px;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +65,7 @@ thead th {
 
 
 .selected-seat {
-  background-color: #118838;
+  background-color: #dd4d59;
 }
 
 .selected-seat h1 {
@@ -108,5 +109,16 @@ thead th {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* shows */
+.hover-red{
+  background-color: none;
+  color: black;
+}
+
+.hover-red:hover{
+  background-color: var(--colour-primary);
+  color: white;
 }
 

@@ -2,6 +2,23 @@
     height: 100vh;
 }
 
+.h-full{
+    height: 100%;
+}
+
+.h-content{
+    height: fit-content;
+}
+
+.w-content{
+    width: fit-content;
+}
+
+.w-min-content{
+    width: min-content;
+}
+
+
 .w-screen{
     width: 100vw;
 }
@@ -11,9 +28,12 @@
 .w-50{
     width: 80%;
 }
+.w-200{
+    width: 200px;
+}
 
-.h-full{
-    height: 100%;
+.max-w-1280{
+    max-width: 1280px;
 }
 
 
@@ -51,8 +71,4 @@
 
 .br-10 {
     border-radius: 10px;
-}
-
-p{
-    line-height: 0.5ch;
 }

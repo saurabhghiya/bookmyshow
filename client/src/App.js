@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import TheatreForMovie from './pages/TheatreForMovie';
 import BookShow from './pages/BookShow';
 import { useSelector } from 'react-redux';
+import { ConfigProvider } from 'antd';
 
 function App() {
   const { loading } = useSelector((state) => state.loaders);
@@ -27,49 +28,58 @@ function App() {
           <div className="loader"></div>
         </div>
       )}
-      <BrowserRouter>
-        <Routes>
-          {/* home route */}
-          <Route path='/' element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          } />
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#df1827'
+          }
+        }}
+      >
 
-          {/* route to movie page */}
-          <Route path='/movie/:id' element={
-            <ProtectedRoute>
-              <TheatreForMovie />
-            </ProtectedRoute>
-          } />
+        <BrowserRouter>
+          <Routes>
+            {/* home route */}
+            <Route path='/' element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } />
 
-          {/* route to show page */}
-          <Route path='/book-show/:id' element={
-            <ProtectedRoute>
-              <BookShow />
-            </ProtectedRoute>
-          } />
+            {/* route to movie page */}
+            <Route path='/movie/:id' element={
+              <ProtectedRoute>
+                <TheatreForMovie />
+              </ProtectedRoute>
+            } />
 
-          {/* route to admin profile */}
-          <Route path='/admin' element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          } />
+            {/* route to show page */}
+            <Route path='/book-show/:id' element={
+              <ProtectedRoute>
+                <BookShow />
+              </ProtectedRoute>
+            } />
 
-          {/* route to user profile */}
-          <Route path='/profile' element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
+            {/* route to admin profile */}
+            <Route path='/admin' element={
+              <ProtectedRoute>
+                <Admin />
+              </ProtectedRoute>
+            } />
 
-          {/* login & register route */}
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+            {/* route to user profile */}
+            <Route path='/profile' element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } />
 
-        </Routes>
-      </BrowserRouter>
+            {/* login & register route */}
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+
+          </Routes>
+        </BrowserRouter>
+      </ConfigProvider>
     </div>
 
 
