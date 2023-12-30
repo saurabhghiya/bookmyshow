@@ -13,7 +13,7 @@ export default function Profile(){
             <Tabs.TabPane tab="Bookings" key="1">
                 <Bookings />
             </Tabs.TabPane>
-            <Tabs.TabPane tab="Apply for Theatre" key="2">
+            <Tabs.TabPane tab="Theatres" key="2">
                 <TheatresList />
             </Tabs.TabPane>
         </Tabs>

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
+// import Button from "../../components/Button";
 import TheatreForm from "./TheatresForm";
 import {
   DeleteTheatre,
-  GetAllTheatres,
   GetAllTheatresByOwner,
 } from "../../apicalls/theatres";
 import { useDispatch, useSelector } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
-import { message, Table } from "antd";
+import { message, Table, Button } from "antd";
 import Shows from "./Shows.jsx";
 
 function TheatresList() {
@@ -23,7 +21,6 @@ function TheatresList() {
   const [openShowsModal = false, setOpenShowsModal] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const getData = async () => {
     try {
@@ -133,13 +130,13 @@ function TheatresList() {
     <div>
       <div className="flex justify-end mb-1">
         <Button
-          variant="outlined"
-          title="Add Theatre"
+          type="primary"
+          ghost
           onClick={() => {
             setFormType("add");
             setShowTheatreFormModal(true);
           }}
-        />
+        >Add Theatre</Button>
       </div>
 
       <Table columns={columns} dataSource={theatres} />

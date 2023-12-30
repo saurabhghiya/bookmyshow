@@ -1,15 +1,14 @@
-import { Form, message, Modal } from "antd";
+import { Form, message, Modal, Input, Button } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
  import { AddTheatre,UpdateTheatre } from "../../apicalls/theatres";
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 
 function TheatreForm({
   showTheatreFormModal,
   setShowTheatreFormModal,
   formType,
-  setFormType,
   selectedTheatre,
   setSelectedTheatre,
   getData,
@@ -64,7 +63,7 @@ function TheatreForm({
           name="name"
           rules={[{ required: true, message: "Please input theatre name!" }]}
         >
-          <input type="text" />
+          <Input type="text" placeholder="Name of theatre" />
         </Form.Item>
 
         <Form.Item
@@ -72,7 +71,7 @@ function TheatreForm({
           name="address"
           rules={[{ required: true, message: "Please input theatre address!" }]}
         >
-          <textarea type="text" />
+          <Input.TextArea showCount maxLength={250} placeholder="Current address of theatre"/>
         </Form.Item>
 
         <Form.Item
@@ -82,7 +81,7 @@ function TheatreForm({
             { required: true, message: "Please input theatre phone number!" },
           ]}
         >
-          <input type="text" />
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -90,19 +89,17 @@ function TheatreForm({
           name="email"
           rules={[{ required: true, message: "Please input theatre email!" }]}
         >
-          <input type="text" />
+          <Input />
         </Form.Item>
         <div className="flex justify-end gap-1">
           <Button
-            title="Cancel"
-            variant="outlined"
-            type="button"
+            type="text"
             onClick={() => {
               setShowTheatreFormModal(false);
               setSelectedTheatre(null);
             }}
-          />
-          <Button title="Save" type="submit" />
+          >Cancel</Button>
+          <Button type="primary" htmlType="submit" >Save</Button>
         </div>
       </Form>
     </Modal>

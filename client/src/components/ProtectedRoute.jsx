@@ -1,5 +1,5 @@
-import { message } from "antd";
-import React, { useEffect} from "react";
+import { Button, message } from "antd";
+import React, { useEffect } from "react";
 import { GetCurrentUser } from "../apicalls/users";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,42 +41,49 @@ function ProtectedRoute({ children }) {
   }, []);
 
   return (
-    user && 
+    user &&
     (
-      <div className="layout p-1">
-        <div className="header bg-primary flex justify-between p-1">
+      <div className="layout">
+        <div className="header bg-primary flex justify-between items-center p-2">
           <div>
-            <h1 className="text-2xl text-white cursor-pointer"
+            <b className="text-3xl text-white cursor-pointer"
               onClick={() => navigate("/")}
-            >Book My Show</h1>
+            >BookMyShow</b>
           </div>
 
-          <div className="bg-white p-1 flex gap-1">
-            <i className="ri-shield-user-line text-primary mt-1"></i>
-            <h1
-              className="text-sm underline"
-              onClick={() => {
-                if (user.isAdmin) {
-                  navigate("/admin");
-                } else {
-                  navigate("/profile");
-                }
-              }}
-            >
-              {user.name}
-            </h1>
-
-            <i
-              className="ri-logout-box-r-line mt-1"
-              onClick={() => {
-                localStorage.removeItem("token");
-                navigate("/login");
-              }}
-            ></i>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 text-white">
+              <b
+                className="text-xl underline"
+                onClick={() => {
+                  if (user.isAdmin) {
+                    navigate("/admin");
+                  } else {
+                    navigate("/profile");
+                  }
+                }}
+              >
+                {user.name}
+              </b>
+              <i className="ri-shield-user-line text-3xl"></i>
+            </div>
+              <Button
+                className="underline bold"
+                size="large"
+                type="default"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  navigate("/login");
+                }}
+              >Sign Out</Button>
+            {/* <div className="bg-white p-1 flex items-center gap-1 br-1">
+            </div> */}
           </div>
         </div>
-        {children}
-        
+        <div className="max-w-1280 m-auto">
+          {children}
+        </div>
+
       </div>
     )
   );

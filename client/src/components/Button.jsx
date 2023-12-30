@@ -4,7 +4,7 @@ export default function Button({ title, onClick, variant, disabled, fullWidth, t
     if (fullWidth) {
         className += " w-full";
     }
-    if (variant == "outlined") {
+    if (variant === "outlined") {
         className = className.replace(
             "bg-primary",
             "border border-primary text-primary bg-white"

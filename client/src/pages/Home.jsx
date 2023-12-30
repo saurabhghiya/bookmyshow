@@ -33,7 +33,7 @@ export default function Home(){
         getData();
     }, [])
     return (movies.length > 0 &&
-        <div className="content p-2">
+        <div className="content p-2 max-w-1280 m-auto">
             <input type='text' placeholder='Search For Currently Showing Movies'
                 className='search-input' onChange={(e) => setSearchText(e.target.value)} />
 

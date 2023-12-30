@@ -1,11 +1,13 @@
-import { Col, Form, Modal, Row, Table, message } from "antd"
+import { Col, Form, Modal, Row, Table, message, Input, Select, Button } from "antd"
 import React , {useEffect, useState} from 'react'
-import Button from '../../components/Button'
+// import Button from '../../components/Button'
 import {GetAllMovies} from "../../apicalls/movies"
 import {AddShow, GetAllShowsByTheatre, DeleteShows} from '../../apicalls/shows'
 import moment from "moment"
 import { useDispatch } from "react-redux"
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice"
+
+const { Option } = Select;
 
 function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
 
@@ -155,12 +157,11 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
         </h1>
         {(
           <Button
-            variant="outlined"
-            title="Add Show"
+            type="primary"
             onClick={() => {
               setView("form");
             }}
-          />
+          >Add Show</Button>
         )}
       </div>
 
@@ -177,7 +178,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                 name="name"
                 rules={[{ required: true, message: "Please input show name!" }]}
               >
-                <input />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={8}>
@@ -186,7 +187,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                 name="date"
                 rules={[{ required: true, message: "Please input show date!" }]}
               >
-                <input
+                <Input
                   type="date"
                   min={new Date()}
                 />
@@ -199,7 +200,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                 name="time"
                 rules={[{ required: true, message: "Please input show time!" }]}
               >
-                <input type="time" />
+                <Input type="time" />
               </Form.Item>
             </Col>
 
@@ -209,12 +210,11 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                 name="movie"
                 rules={[{ required: true, message: "Please select movie!" }]}
               >
-                <select>
-                  <option value="">Select Movie</option>
+                <Select placeholder="Please select a movie" >
                   {movies.map((movie) => (
-                    <option value={movie._id}>{movie.title}</option>
+                    <Option value={movie._id}>{movie.title}</Option>
                   ))}
-                </select>
+                </Select>
               </Form.Item>
             </Col>
 
@@ -226,7 +226,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                   { required: true, message: "Please input ticket price!" },
                 ]}
               >
-                <input type="number" />
+                <Input type="number" />
               </Form.Item>
             </Col>
 
@@ -238,20 +238,20 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
                   { required: true, message: "Please input total seats!" },
                 ]}
               >
-                <input type="number" />
+                <Input type="number" />
               </Form.Item>
             </Col>
           </Row>
 
           <div className="flex justify-end gap-1">
             <Button
-              variant="outlined"
-              title="Cancel"
+              className="bg-lightgrey"
+              type="text"
               onClick={() => {
                 setView("table");
               }}
-            />
-            <Button variant="contained" title="SAVE" type="submit" />
+            >Cancel</Button>
+            <Button type="primary" htmlType="submit" > Save </Button>
           </div>
         </Form>
       )}

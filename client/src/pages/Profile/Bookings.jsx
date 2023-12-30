@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
-import { message, Row, Table, Col } from "antd";
+import { message, Row, Col } from "antd";
 import { GetBookingsOfUser } from "../../apicalls/bookings";
 import moment from "moment";
 
 function Bookings() {
   const [bookings = [], setBookings] = useState([]);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const getData = async () => {
     try {
       dispatch(ShowLoading());
       const response = await GetBookingsOfUser();
       if (response.success) {
-          console.log(response.data);
+        console.log(response.data);
         setBookings(response.data);
       } else {
         message.error(response.message);
@@ -33,12 +32,12 @@ function Bookings() {
   }, []);
   return (
     <div>
-      <Row gutter={[16, 16]}>
+      <Row gutter={[24, 24]}>
         {bookings.map((booking) => (
+          <>
           <Col span={12}>
-            <div className="card p-2 flex justify-between uppercase">
+            <div className="p-2 flex justify-between uppercase gap-3 br-10" style={{backgroundColor:"rgb(0,0,0,0.03)", boxShadow:"0 4px 10px 0 rgba(0, 0, 0, 0.15)"}}>
               <div>
-
                 <h1 className="text-xl">
                   {booking.show.movie.title} ({booking.show.movie.language})
                 </h1>
@@ -47,7 +46,7 @@ function Bookings() {
                   {booking.show.theatre.name} ({booking.show.theatre.address})
                 </h1>
                 <h1 className="text-sm">
-                  Date & Time: {moment(booking.show.date).format("MMM Do YYYY")}{" "}
+                  Date & Time: {moment(booking.show.date).format("Do MMM YYYY")}{" "}
                   - {moment(booking.show.time, "HH:mm").format("hh:mm A")}
                 </h1>
 
@@ -61,18 +60,18 @@ function Bookings() {
                 <img
                   src={booking.show.movie.poster}
                   alt=""
-                  height={100}
-                  width={100}
+                  width={150}
                   className="br-1"
-                />
+                  />
                 <h1 className="text-sm">Seats: {booking.seats.join(", ")}</h1>
               </div>
             </div>
           </Col>
+        </>
         ))}
       </Row>
     </div>
-  );
-}
-
-export default Bookings;
+    );
+  }
+  
+  export default Bookings;
