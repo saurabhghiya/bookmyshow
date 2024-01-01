@@ -14,9 +14,11 @@ function Bookings() {
     try {
       dispatch(ShowLoading());
       const response = await GetBookingsOfUser();
+      
       if (response.success) {
-        console.log(response.data);
-        setBookings(response.data);
+        //filter bookings by valid shows
+        let filteredBookings = response.data.filter((b,i) => b.show);
+        setBookings(filteredBookings);
       } else {
         message.error(response.message);
       }
@@ -30,11 +32,17 @@ function Bookings() {
   useEffect(() => {
     getData();
   }, []);
+
+  if(bookings.length === 0){
+    return (
+      <p className="text-lg text-center">You have no bookings</p>
+    )
+  }
+
   return (
     <div>
       <Row gutter={[24, 24]}>
         {bookings.map((booking) => ( 
-          booking.show &&
           <>
             <Col span={12}>
               <div className="p-2 flex justify-between uppercase gap-3 br-10" style={{ backgroundColor: "rgb(0,0,0,0.03)", boxShadow: "0 4px 10px 0 rgba(0, 0, 0, 0.15)" }}>
