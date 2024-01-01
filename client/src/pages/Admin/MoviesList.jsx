@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import MovieForm from "./MovieForm";
 import moment from "moment";
@@ -8,10 +8,10 @@ import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
 
 function MoviesList() {
-  const [movies, setMovies] = React.useState([]);
-  const [showMovieFormModal, setShowMovieFormModal] = React.useState(false);
-  const [selectedMovie, setSelectedMovie] = React.useState(null);
-  const [formType, setFormType] = React.useState("add");
+  const [movies, setMovies] = useState([]);
+  const [showMovieFormModal, setShowMovieFormModal] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [formType, setFormType] = useState("add");
   const dispatch = useDispatch();
   
   const getData = async () => {

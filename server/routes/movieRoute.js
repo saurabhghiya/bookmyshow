@@ -55,7 +55,7 @@ router.put('/update-movie', authMiddleware, async(req,res)=>{
 //delete movie
 router.delete('/delete-movie', authMiddleware, async(req,res)=>{
     try {
-        await Movie.deleteOne(req.body.movieId);
+        await Movie.deleteOne({ "_id":req.body.movieId })
         res.send({
             success:true,
             message:"Movie Deleted"
