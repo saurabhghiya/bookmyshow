@@ -7,16 +7,24 @@ export default function Admin(){
     
     return (<>
         <PageTitle title="Admin" />
-        <Tabs type="card" defaultActiveKey='1'>
-
-            <Tabs.TabPane tab="Movies" key="1">
-                <MoviesList/>
-            </Tabs.TabPane>
-            
-            <Tabs.TabPane tab="Theatres" key="2">
-                <TheatreTable />
-            </Tabs.TabPane>
-        </Tabs>
+        <Tabs 
+            type="card" 
+            defaultActiveKey='1'
+            items={
+                [
+                    {
+                        key: 1,
+                        label: "Movies",
+                        children: <MoviesList/>
+                    },
+                    {
+                        key: 2,
+                        label: "Theatres",
+                        children: <TheatreTable/>
+                    }
+                ]
+            }
+        />
     </>
     )
 }

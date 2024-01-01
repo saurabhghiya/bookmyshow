@@ -9,14 +9,24 @@ export default function Profile(){
     return (<>
         <PageTitle title="Profile" />
 
-        <Tabs type="card" defaultActiveKey='1'>
-            <Tabs.TabPane tab="Bookings" key="1">
-                <Bookings />
-            </Tabs.TabPane>
-            <Tabs.TabPane tab="Theatres" key="2">
-                <TheatresList />
-            </Tabs.TabPane>
-        </Tabs>
+        <Tabs 
+            type="card" 
+            defaultActiveKey='1'
+            items={
+                [
+                    {
+                        key: 1,
+                        label: "Bookings",
+                        children: <Bookings />
+                    },
+                    {
+                        key: 2,
+                        label: "Theatres",
+                        children: <TheatresList />
+                    }
+                ]
+            }
+        />
     </>
     )
 }
