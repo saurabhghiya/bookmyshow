@@ -123,7 +123,7 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
               <div className="flex gap-1 items-center">
                 {record.bookedSeats.length === 0 && (
                   <i
-                    className="ri-delete-bin-line"
+                    className="ri-delete-bin-line cursor-pointer"
                     onClick={() => {
                       handleDelete(record._id);
                     }}
@@ -138,6 +138,8 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
       useEffect(()=>{
           getData()
       },[])
+
+      console.log(shows);
 
     return (
         <Modal title=""

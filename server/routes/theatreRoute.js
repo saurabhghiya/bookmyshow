@@ -73,7 +73,8 @@ router.put('/update-theatre', authMiddleware, async(req,res)=>{
 //delete theatre
 router.delete('/delete-theatre', authMiddleware, async(req,res)=>{
     try {
-        await Theatre.deleteOne(req.body.theatreId);
+        const response = await Theatre.deleteOne({ "_id": req.body.theatreId });
+        console.log(response);
         res.send({
             success:true,
             message:"Theatre Deleted"

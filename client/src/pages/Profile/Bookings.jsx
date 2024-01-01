@@ -33,45 +33,46 @@ function Bookings() {
   return (
     <div>
       <Row gutter={[24, 24]}>
-        {bookings.map((booking) => (
+        {bookings.map((booking) => ( 
+          booking.show &&
           <>
-          <Col span={12}>
-            <div className="p-2 flex justify-between uppercase gap-3 br-10" style={{backgroundColor:"rgb(0,0,0,0.03)", boxShadow:"0 4px 10px 0 rgba(0, 0, 0, 0.15)"}}>
-              <div>
-                <h1 className="text-xl">
-                  {booking.show.movie.title} ({booking.show.movie.language})
-                </h1>
-                <div className="divider"></div>
-                <h1 className="text-sm">
-                  {booking.show.theatre.name} ({booking.show.theatre.address})
-                </h1>
-                <h1 className="text-sm">
-                  Date & Time: {moment(booking.show.date).format("Do MMM YYYY")}{" "}
-                  - {moment(booking.show.time, "HH:mm").format("hh:mm A")}
-                </h1>
+            <Col span={12}>
+              <div className="p-2 flex justify-between uppercase gap-3 br-10" style={{ backgroundColor: "rgb(0,0,0,0.03)", boxShadow: "0 4px 10px 0 rgba(0, 0, 0, 0.15)" }}>
+                <div>
+                  <h1 className="text-xl">
+                    {booking.show.movie.title} ({booking.show.movie.language})
+                  </h1>
+                  <div className="divider"></div>
+                  <h1 className="text-sm">
+                    {booking.show.theatre.name} ({booking.show.theatre.address})
+                  </h1>
+                  <h1 className="text-sm">
+                    Date & Time: {moment(booking.show.date).format("Do MMM YYYY")}{" "}
+                    - {moment(booking.show.time, "HH:mm").format("hh:mm A")}
+                  </h1>
 
-                <h1 className="text-sm">
-                  Amount : ₹ {booking.show.ticketPrice * booking.seats.length}
-                </h1>
-                <h1 className="text-sm">Booking ID: {booking._id}</h1>
-              </div>
+                  <h1 className="text-sm">
+                    Amount : ₹ {booking.show.ticketPrice * booking.seats.length}
+                  </h1>
+                  <h1 className="text-sm">Booking ID: {booking._id}</h1>
+                </div>
 
-              <div>
-                <img
-                  src={booking.show.movie.poster}
-                  alt=""
-                  width={150}
-                  className="br-1"
+                <div>
+                  <img
+                    src={booking.show.movie.poster}
+                    alt=""
+                    width={150}
+                    className="br-1"
                   />
-                <h1 className="text-sm">Seats: {booking.seats.join(", ")}</h1>
+                  <h1 className="text-sm">Seats: {booking.seats.join(", ")}</h1>
+                </div>
               </div>
-            </div>
-          </Col>
-        </>
+            </Col>
+          </>
         ))}
       </Row>
     </div>
-    );
-  }
-  
-  export default Bookings;
+  );
+}
+
+export default Bookings;

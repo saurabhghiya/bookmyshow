@@ -40,7 +40,7 @@ export const UpdateTheatre = async (payload) => {
 
 export const DeleteTheatre = async (payload) => {
     try {
-        const response = await axiosInstance.delete('/api/theatres/delete-theatre',payload);
+        const response = await axiosInstance.delete('/api/theatres/delete-theatre',{data: payload});
         return response.data;
     } catch (error) {
         return error.message;

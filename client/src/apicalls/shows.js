@@ -28,9 +28,9 @@ export const UpdateShows = async(payload) => {
     }
 }
 
-export const DeleteShows = async(payload) => {
+export const DeleteShows = async (payload) => {
     try {
-        const response = await axiosInstance.delete('/api/shows/delete-shows',payload);
+        const response = await axiosInstance.delete('/api/shows/delete-shows', { data: payload });
         return response.data;
     } catch (error) {
         return error.message;

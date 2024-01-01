@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { response } = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
 const Shows = require('../models/showsModels');
 
@@ -53,12 +54,12 @@ router.put('/update-shows', authMiddleware, async(req,res)=>{
 })
 
 //delete shows
-router.delete('/delete-shows', authMiddleware, async(req,res)=>{
+router.delete('/delete-shows', authMiddleware, async (req,res)=>{
     try {
-        await Shows.deleteOne(req.body.showsId);
+        await Shows.deleteOne({ "_id" : req.body.showId });
         res.send({
-            success:true,
-            message:"shows Deleted"
+            success: true,
+            message: "Show Deleted"
         })
     } catch (err) {
         res.send({
