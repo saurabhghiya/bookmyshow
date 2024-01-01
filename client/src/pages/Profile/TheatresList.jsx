@@ -92,7 +92,6 @@ function TheatresList() {
             <i
               className="ri-delete-bin-line"
               onClick={() => {
-                // console.log(record._id);
                 handleDelete(record._id);
               }}
             ></i>
