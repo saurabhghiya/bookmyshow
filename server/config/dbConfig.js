@@ -14,7 +14,7 @@ mongoose.connect(db,{
 // dotenv package needs to be installed to use this feature
 
 mongoose.connect(mongo_url).then(()=>{
-    console.log('Connection Established');
+    console.log('MongoDB Server Connection Established');
 }).catch((error)=>{
     console.log(error);
 })

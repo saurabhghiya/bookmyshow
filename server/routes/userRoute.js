@@ -11,7 +11,7 @@ router.post('/register',async(req,res)=>{
         if(userExists){
             return res.send({
                 success:false,
-                message:"user already exists"
+                message:"User already exists"
             })
         }
 
@@ -28,7 +28,10 @@ router.post('/register',async(req,res)=>{
         })
 
     }catch(err){
-        console.log(err);
+        res.send({
+            success: false,
+            message: err.message
+        })
     }
     
 });
