@@ -6,13 +6,11 @@ import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../redux/loadersSlice";
 import { GetTheatresByMovie } from "../apicalls/shows"
 import moment from "moment";
-import { genHoverStyle } from "antd/es/input/style";
 
 export default function TheatreForMovie() {
   let [movie, setMovie] = useState()
   let [theatres, setTheatres] = useState();
   let [date, setDate] = useState(moment().format("YYYY-MM-DD"));
-  const [isHovering, setIsHovering] = useState('');
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -40,7 +38,7 @@ export default function TheatreForMovie() {
       dispatch(ShowLoading());
       const response = await GetTheatresByMovie({ date, movie: params.id })
       if (response.success) {
-        setTheatres([...response.data, ...response.data, ...response.data, ...response.data, ...response.data]);
+        setTheatres(response.data);
         message.success(response.message)
       } else {
         message.error(response.message);
@@ -52,14 +50,6 @@ export default function TheatreForMovie() {
       message.error(err.message);
     }
   }
-
-  const handleMouseEnter = (id) => {
-    setIsHovering(id);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovering('');
-  };
 
   useEffect(() => {
     getData();

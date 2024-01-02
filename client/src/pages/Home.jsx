@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 
-import {message} from 'antd'
+import { message, Input } from 'antd'
 import { GetAllMovies } from '../apicalls/movies';
 import { useDispatch } from 'react-redux';
 import { HideLoading, ShowLoading } from '../redux/loadersSlice';
@@ -34,8 +34,11 @@ export default function Home(){
     }, [])
     return (movies.length > 0 &&
         <div className="content p-2 max-w-1280 m-auto">
-            <input type='text' placeholder='Search For Currently Showing Movies'
-                className='search-input' onChange={(e) => setSearchText(e.target.value)} />
+            <Input.Search 
+                type='search' 
+                placeholder='Search For Currently Showing Movies' 
+                onChange={(e) => setSearchText(e.target.value)} 
+            />
 
             <div className="movie-row flex mt-2 gap-1">
                 {movies

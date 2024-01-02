@@ -138,8 +138,6 @@ function Shows({ openShowsModal, setOpenShowsModal, theatre }) {
           getData()
       },[])
 
-      console.log(shows);
-
     return (
         <Modal title=""
             open={openShowsModal}
