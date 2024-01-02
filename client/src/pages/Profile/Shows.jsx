@@ -1,6 +1,5 @@
 import { Col, Form, Modal, Row, Table, message, Input, Select, Button } from "antd"
 import React , {useEffect, useState} from 'react'
-// import Button from '../../components/Button'
 import {GetAllMovies} from "../../apicalls/movies"
 import {AddShow, GetAllShowsByTheatre, DeleteShows} from '../../apicalls/shows'
 import moment from "moment"

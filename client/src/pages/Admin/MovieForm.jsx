@@ -1,10 +1,11 @@
 import React from "react";
-import { Col, Form, message, Modal, Row } from "antd";
-import Button from "../../components/Button";
+import { Col, Form, message, Modal, Row, Input, Select, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { AddMovie, UpdateMovie } from "../../apicalls/movies";
 import moment from "moment";
+
+const { Option } = Select;
 
 function MovieForm({
   showMovieFormModal,
@@ -65,69 +66,65 @@ function MovieForm({
         <Row gutter={16}>
           <Col span={24}>
             <Form.Item label="Movie Name" name="title">
-              <input type="text" />
+              <Input type="text" />
             </Form.Item>
           </Col>
 
           <Col span={24}>
             <Form.Item label="Movie Description" name="description">
-              <textarea type="text" />
+              <Input.TextArea showCount />
             </Form.Item>
           </Col>
 
           <Col span={8}>
             <Form.Item label="Movie Duration (Min)" name="duration">
-              <input type="number" />
+              <Input type="number" />
             </Form.Item>
           </Col>
 
           <Col span={8}>
             <Form.Item label="Language" name="language">
-              <select name="" id="">
-                <option value="">Select Language</option>
-                <option value="Telugu">Telugu</option>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Tamil">Tamil</option>
-              </select>
+              <Select placeholder="Select Language" >
+                <Option value="Telugu">Telugu</Option>
+                <Option value="English">English</Option>
+                <Option value="Hindi">Hindi</Option>
+                <Option value="Tamil">Tamil</Option>
+              </Select>
             </Form.Item>
           </Col>
 
           <Col span={8}>
             <Form.Item label="Movie Release Date" name="releaseDate">
-              <input type="date" />
+              <Input type="date" />
             </Form.Item>
           </Col>
 
           <Col span={8}>
             <Form.Item label="Genre" name="genre">
-              <select name="" id="">
-                <option value="">Select Genre</option>
-                <option value="Action">Action</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Drama">Drama</option>
-                <option value="Romance">Romance</option>
-              </select>
+              <Select placeholder="Select Genre" >
+                <Option value="Action">Action</Option>
+                <Option value="Comedy">Comedy</Option>
+                <Option value="Drama">Drama</Option>
+                <Option value="Romance">Romance</Option>
+              </Select>
             </Form.Item>
           </Col>
           <Col span={16}>
             <Form.Item label="Poster URL" name="poster">
-              <input type="text" />
+              <Input type="url" />
             </Form.Item>
           </Col>
         </Row>
 
         <div className="flex justify-end gap-1">
           <Button
-            title="Cancel"
-            variant="outlined"
-            type="button"
+            type="text"
             onClick={() => {
               setShowMovieFormModal(false);
               setSelectedMovie(null);
             }}
-          />
-          <Button title="Save" type="submit" />
+          >Cancel</Button>
+          <Button htmlType="submit" type="primary" >Submit</Button>
         </div>
       </Form>
     </Modal>

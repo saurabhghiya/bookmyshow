@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../components/Button";
 import MovieForm from "./MovieForm";
 import moment from "moment";
-import { message, Table } from "antd";
+import { message, Table, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
@@ -100,13 +99,13 @@ function MoviesList() {
         return (
           <div className="flex gap-1">
             <i
-              className="ri-delete-bin-line"
+              className="ri-delete-bin-line cursor-pointer"
               onClick={() => {
                 handleDelete(record._id);
               }}
             ></i>
             <i
-              className="ri-pencil-line"
+              className="ri-pencil-line cursor-pointer"
               onClick={() => {
                 setSelectedMovie(record);
                 setFormType("edit");
@@ -127,13 +126,13 @@ function MoviesList() {
     <div>
       <div className="flex justify-end mb-1">
         <Button
-          title="Add Movie"
-          variant="outlined"
+          type="primary"
+          ghost
           onClick={() => {
             setShowMovieFormModal(true);
             setFormType("add");
           }}
-        />
+        >Add Movie</Button>
       </div>
 
       <Table columns={columns} dataSource={movies}/>
