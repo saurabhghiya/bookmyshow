@@ -4,5 +4,5 @@ BookMyShow like web app made as a personal project (MERN)
 - Backend in Express, Node
 - DB in MongoDB
 
-[View App][https://bookmyshow-clone-hw3i.onrender.com/]
+[View App](https://bookmyshow-clone-hw3i.onrender.com/)
 
